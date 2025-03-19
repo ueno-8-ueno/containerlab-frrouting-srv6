@@ -5,7 +5,6 @@ topology:
   kinds:     #全ノード共通部分
     linux:
       image: frrouting/frr:latest
-      network-mode: none   #OSPFの代替パスにeth0を用いない
       labels:
         type: router
       exec:
@@ -22,6 +21,11 @@ topology:
         - ./router1/daemons:/etc/frr/daemons
         - ./router1/frr.conf:/etc/frr/frr.conf
         - ./router1/vtysh.conf:/etc/frr/vtysh.conf
+        - ./bfd_detection.py:/bfd_detection.py
+      exec:
+        - apk --update add py3-pip #試験実装
+        #- pip3 install hoge       #なにか入れる場合
+
     r2:
       kind: linux
       binds:
