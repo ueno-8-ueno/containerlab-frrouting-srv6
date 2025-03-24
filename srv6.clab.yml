@@ -21,10 +21,10 @@ topology:
         - ./router1/daemons:/etc/frr/daemons
         - ./router1/frr.conf:/etc/frr/frr.conf
         - ./router1/vtysh.conf:/etc/frr/vtysh.conf
-        - ./bfd_detection.py:/bfd_detection.py
+        - ./set_srv6.py:/set_srv6.py
       exec:
-        - apk --update add py3-pip #試験実装
-        #- pip3 install hoge       #なにか入れる場合
+        - apk --update add py3-pip #pip実装
+        - pip3 install pyroute2
 
     r2:
       kind: linux
